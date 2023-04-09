@@ -11,5 +11,10 @@ config_version=5
 [application]
 
 config/name="Silver-copper-sparrow"
+run/main_scene="res://silver_copper_sparrow/scenes/main.tscn"
 config/features=PackedStringArray("4.0", "Double Precision", "Forward Plus")
 config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg")
