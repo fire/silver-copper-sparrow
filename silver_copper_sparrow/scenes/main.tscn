@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://djxcctopwnvag"]
+[gd_scene load_steps=6 format=3 uid="uid://djxcctopwnvag"]
 
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="1_c7764"]
 [ext_resource type="Script" path="res://silver_copper_sparrow/core/main.gd" id="1_wvcef"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="2_0gjiq"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_jm5h6"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_j64ll"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_wvcef")
@@ -18,4 +19,12 @@ initial_state = NodePath("HelloWorld")
 [node name="HelloWorld" type="Node" parent="StateChart/CompoundState"]
 script = ExtResource("2_0gjiq")
 
+[node name="OnHomeEnvironment" type="Node" parent="StateChart/CompoundState/HelloWorld"]
+script = ExtResource("5_j64ll")
+to = NodePath("../../HomeEnvironment")
+
+[node name="HomeEnvironment" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("2_0gjiq")
+
 [connection signal="state_entered" from="StateChart/CompoundState/HelloWorld" to="." method="print_hello_world"]
+[connection signal="state_entered" from="StateChart/CompoundState/HomeEnvironment" to="." method="print_home_env"]
