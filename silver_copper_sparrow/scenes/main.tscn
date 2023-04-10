@@ -26,5 +26,21 @@ to = NodePath("../../HomeEnvironment")
 [node name="HomeEnvironment" type="Node" parent="StateChart/CompoundState"]
 script = ExtResource("2_0gjiq")
 
+[node name="OnBaserowAPIKey" type="Node" parent="StateChart/CompoundState/HomeEnvironment"]
+script = ExtResource("5_j64ll")
+to = NodePath("../../BaserowAPIKey")
+
+[node name="BaserowAPIKey" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("2_0gjiq")
+
+[node name="OnBaserowRequest" type="Node" parent="StateChart/CompoundState/BaserowAPIKey"]
+script = ExtResource("5_j64ll")
+to = NodePath("../../BaserowRequest")
+
+[node name="BaserowRequest" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("2_0gjiq")
+
 [connection signal="state_entered" from="StateChart/CompoundState/HelloWorld" to="." method="print_hello_world"]
 [connection signal="state_entered" from="StateChart/CompoundState/HomeEnvironment" to="." method="print_home_env"]
+[connection signal="state_entered" from="StateChart/CompoundState/BaserowAPIKey" to="." method="get_baserow_api_key"]
+[connection signal="state_entered" from="StateChart/CompoundState/BaserowRequest" to="." method="fetch_baserow_llm_chat"]
